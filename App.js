@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {
+  Fader
+} from 'react-native-ui-lib';
+import { SafeAreaView } from 'react-native';
+import { TopBar } from './src/components/topbar.components';
+import { Chat } from './src/navigation/main/chat.feature'
+
+import { AccountNavigator } from './src/navigation/account/account.navigator';
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ height: '100%', backgroundColor: 'black' }}>
+      <TopBar />
+        <Chat />
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
