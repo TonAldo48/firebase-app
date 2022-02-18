@@ -13,7 +13,7 @@ export default function App() {
   return (
     <SafeAreaView style={{ height: '100%', backgroundColor: 'black' }}>
       <TopBar />
-        <Chat />
+        <AccountNavigator />
     </SafeAreaView>
   );
 }

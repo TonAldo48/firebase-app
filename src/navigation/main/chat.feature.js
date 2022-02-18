@@ -1,46 +1,75 @@
 import React from 'react';
-
 import {
-    Text,
     View,
     Colors,
-    Button
+    TouchableOpacity
 } from 'react-native-ui-lib';
-import { TextInput } from 'react-native-paper';
 import { Ionicons } from 'react-native-vector-icons';
-import { KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView, FlatList, TextInput, Button } from 'react-native';
 
-export const Chat = () => {
+
+import { ChatInfoBar } from '../../components/chatinfo.component';
+import { SentMessage } from '../../components/sentmessage.component';
+import { ReceivedMessage } from '../../components/receivedmessage.component';
+
+import { conversations } from '../../data/conversations.data';
+
+export const Chat = ({ navigation }) => {
+    var index = 1;
+    const renderItem = ({ item }) => {
+        index++;
+        if (item.isNew == false) {
+            return <SentMessage message={item.text} />
+        }
+        return <ReceivedMessage message={item.text} /> 
+    }
+
     return (
-        <>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
-              style={{flex:1}}
-            >
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: 'black' }}
+            keyboardVerticalOffset={90}
+        >
+            <View flex >
+                <ChatInfoBar navigation={navigation} marginB-24 />
                 <View flex>
-
-                </View>
-
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View padding-10 spread row>
+                    <FlatList
+                        inverted
+                        data={conversations}
+                        renderItem={renderItem}
+                        keyExtractor={item => `${item.name} + ${index} + ${1}`} />
+                    <View padding-10 marginT-10 row style={{
+                        borderTopColor: Colors.violet10,
+                        borderWidth: 2,
+                        backgroundColor: 'black'
+                    }}>
                         <TextInput
                             keyboardAppearance='dark'
                             style={{
                                 height: 40,
                                 fontSize: 20,
-                                width: '90%',
+                                width: '88%',
                                 marginRight: 10,
                                 borderRadius: 15,
-                                color: 'yellow',
                                 backgroundColor: 'white'
                             }}
+                            activeUnderlineColor='black'
                             selectionColor='blue'
                         />
-                        <Button label={'Press'} size={20} backgroundColor={Colors.red30} />
+                        <View centerV style={{ borderRadius: 5 }}>
+                            <Ionicons
+                                name='arrow-up'
+                                size={30}
+                                compact={true}
+                                borderRadius={50}
+                                style={{ color: Colors.violet10, borderRadius: 20 }}
+                                onPress={()=> console.log('pressed')}
+                            />
+                        </View>
                     </View>
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
-        </>
+                </View>
+            </View>
+
+        </KeyboardAvoidingView>
+
     )
 }
+

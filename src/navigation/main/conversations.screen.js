@@ -33,7 +33,7 @@ export class ConversationListScreen extends Component {
       const initials = AvatarHelper.getInitials(item.name);
       const avatarBadgeProps = {backgroundColor: Number(index) < 3 ? Colors.green30 : undefined};
       const buttonPress = () => Alert.alert('Badge button press');
-      const listOnPress = () => Alert.alert(`Pressed on contact #${index + 1}`);
+      const listOnPress = () => this.props.navigation.navigate('ChatNavigation') ;
       const imageSource = item.thumbnail ? {uri: item.thumbnail} : null;
       const rightButtons = [
         {

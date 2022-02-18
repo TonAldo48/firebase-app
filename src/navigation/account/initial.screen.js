@@ -12,7 +12,7 @@ export const InitialScreen = ({navigation}) => {
       >
         <Avatar size={250} source={require('../../../assets/anonimage.png')} />
       </View>
-      <View centerH spread  >
+      <View centerH spread>
         <AccButton label='LOGIN' navigation={navigation} navTo='Login' />
         <AccButton label='REGISTER' navigation={navigation} navTo='Register'/>
       </View>
