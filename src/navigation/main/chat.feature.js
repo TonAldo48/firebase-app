@@ -12,7 +12,7 @@ import { ChatInfoBar } from '../../components/chatinfo.component';
 import { SentMessage } from '../../components/sentmessage.component';
 import { ReceivedMessage } from '../../components/receivedmessage.component';
 
-import { conversations } from '../../data/conversations.data';
+import { Conversations } from '../../data/conversations.data';
 
 export const Chat = ({ navigation }) => {
     var index = 1;
@@ -30,10 +30,10 @@ export const Chat = ({ navigation }) => {
         >
             <View flex >
                 <ChatInfoBar navigation={navigation} marginB-24 />
-                <View flex>
+                <View flex >
                     <FlatList
                         inverted
-                        data={conversations}
+                        data={Conversations}
                         renderItem={renderItem}
                         keyExtractor={item => `${item.name} + ${index} + ${1}`} />
                     <View padding-10 marginT-10 row style={{

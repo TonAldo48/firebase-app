@@ -7,6 +7,7 @@ import { TopBar } from './src/components/topbar.components';
 import { Chat } from './src/navigation/main/chat.feature'
 
 import { AccountNavigator } from './src/navigation/account/account.navigator';
+import { ChatInfo } from './src/navigation/main/chatinfo.screen';
 
 export default function App() {
 
